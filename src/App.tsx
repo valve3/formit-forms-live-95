@@ -12,6 +12,7 @@ import { FormsList } from "@/components/forms/FormsList";
 import { FormBuilder } from "@/components/forms/FormBuilder";
 import { UserManagement } from "@/components/admin/UserManagement";
 import { SubmissionsList } from "@/components/submissions/SubmissionsList";
+import { SettingsPanel } from "@/components/settings/SettingsPanel";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import EmbedForm from "./pages/EmbedForm";
@@ -70,12 +71,7 @@ const DashboardContent = () => {
       case 'users':
         return profile?.role === 'admin' ? <UserManagement /> : <div>Access denied</div>;
       case 'settings':
-        return (
-          <div className="text-center py-12">
-            <h3 className="text-lg font-medium text-gray-900 mb-2">Settings</h3>
-            <p className="text-gray-600">Settings panel coming soon...</p>
-          </div>
-        );
+        return <SettingsPanel />;
       default:
         return <FormsList onCreateForm={() => setCurrentView('builder')} onEditForm={() => {}} />;
     }

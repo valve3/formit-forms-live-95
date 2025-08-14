@@ -90,11 +90,17 @@ VALUES ('user_id', 'email', 'name', 'temp_hash', 'user', 'timestamp');
 
 ## Step 6: Testing
 
-1. **Test Authentication:**
+1. **Create Admin User:**
+   - Visit `/api/admin/create-admin.php` to create the initial admin account
+   - Default admin credentials: `admin@formit.com` / `admin123`
+   - **IMPORTANT**: Change the password after first login
+
+2. **Test Authentication:**
    - Try creating a new account
    - Test login functionality
+   - Test admin login to access user management
 
-2. **Test Forms:**
+3. **Test Forms:**
    - Create, edit, and delete forms
    - Submit test form data
 
