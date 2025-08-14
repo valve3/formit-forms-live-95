@@ -47,17 +47,64 @@ class ApiClient {
 
   // Authentication methods
   async signIn(email: string, password: string) {
+    // Mock authentication for development (replace with PHP API when deployed)
+    if (email === 'admin@formit.com' && password === 'admin123') {
+      const mockUser = {
+        id: 'admin_001',
+        email: 'admin@formit.com',
+        full_name: 'Admin User',
+        role: 'admin',
+        created_at: new Date().toISOString()
+      };
+      return {
+        user: mockUser,
+        token: 'mock_admin_token_' + Date.now()
+      };
+    } else if (email === 'user@test.com' && password === 'user123') {
+      const mockUser = {
+        id: 'user_001',
+        email: 'user@test.com',
+        full_name: 'Test User',
+        role: 'user',
+        created_at: new Date().toISOString()
+      };
+      return {
+        user: mockUser,
+        token: 'mock_user_token_' + Date.now()
+      };
+    } else {
+      throw new Error('Invalid credentials');
+    }
+    
+    // Uncomment this when deploying to GoDaddy:
+    /*
     return this.request('/auth/login.php', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
+    */
   }
 
   async signUp(email: string, password: string, fullName: string) {
+    // Mock sign up for development
+    const mockUser = {
+      id: 'user_' + Date.now(),
+      email: email,
+      full_name: fullName,
+      role: 'user',
+      created_at: new Date().toISOString()
+    };
+    
+    // Simulate successful registration
+    return { user: mockUser };
+    
+    // Uncomment this when deploying to GoDaddy:
+    /*
     return this.request('/auth/register.php', {
       method: 'POST',
       body: JSON.stringify({ email, password, fullName }),
     });
+    */
   }
 
   async signOut() {
@@ -123,7 +170,28 @@ class ApiClient {
 
   // Users methods (admin only)
   async getUsers() {
+    // Mock users data for development
+    return [
+      {
+        id: 'admin_001',
+        email: 'admin@formit.com',
+        full_name: 'Admin User',
+        role: 'admin',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: 'user_001',
+        email: 'user@test.com',
+        full_name: 'Test User',
+        role: 'user',
+        created_at: new Date().toISOString()
+      }
+    ];
+    
+    // Uncomment this when deploying to GoDaddy:
+    /*
     return this.request('/admin/users.php');
+    */
   }
 }
 
